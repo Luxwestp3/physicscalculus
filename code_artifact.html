@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Учебный навигатор — Матан и Физика</title>
+  <title>Учебный навигатор — пять предметов</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -51,7 +51,7 @@
         </div>
         <div class="min-w-0">
           <h1 class="text-base sm:text-lg font-bold text-slate-900 truncate" id="app-title">Учебный навигатор</h1>
-          <p class="text-xs text-slate-500 truncate" id="app-subtitle">Матан (КДЗ) + Физика (Пересдача) • до конца декабря</p>
+          <p class="text-xs text-slate-500 truncate" id="app-subtitle">Пять предметов • 16 ч/нед</p>
         </div>
       </div>
 
@@ -155,9 +155,9 @@
     const STUDY_DATA = {
       meta: {
         title: "Учебный навигатор",
-        subtitle: "Матан (КДЗ, 15 задач) + Физика (Пересдача КР) • 6–9 ч/нед до конца декабря",
-        weeklyBudget: "6–9 ч/нед (2–3 занятия по 2–3 ч)",
-        deadline: "Конец декабря (последняя неделя — резерв)"
+        subtitle: "Пять предметов • 16 ч/нед: квота и меню, а не календарь",
+        weeklyBudget: "16 ч/нед: физика 6 · матан 4 · химия 3,5 · биология 1,5 · алгебра 1",
+        deadline: "Зачётная неделя — пересдача физики (2 попытки); сессия располовинена каникулами"
       },
 
       schedule: [
@@ -166,12 +166,15 @@
           title: "Неделя 1: Разгон и фундамент",
           dates: "23 – 29 ноября",
           hours: "7,5 ч",
+          quota: { math: 3, physics: 6, chemistry: 3, biology: 1, algebra: 1 }, // 14 ч: минус 2 из-за ГТО
+          anchor: "Вс 29.11, 15:00–21:00 · суббота занята ГТО — якорь переехал",
+          anchorFallback: "если и воскресенье срежется — переносится на понедельник вечером, 2 ч",
           isReserve: false,
           goal: "Снять страх чистого листа: закрыть 6 базовых задач КДЗ по матану и освоить диффуры в физике.",
           sessions: [
-            { day: "Пн / Вт", subjectId: "math", duration: "2,5 ч", title: "Матан — Этап 1: Комплексные числа, обратные функции, дроби", taskIds: ["m-26-3", "m-35-3", "m-19-3"] },
-            { day: "Ср / Чт", subjectId: "physics", duration: "2,5 ч", title: "Физика — Маршрут к КР-1: Диффуры и уравнение Мещерского", taskIds: ["p-2-30", "p-3-10"] },
-            { day: "Сб / Вс", subjectId: "math", duration: "2,5 ч", title: "Матан — Этап 2: Метод индукции и рекуррентные формулы", taskIds: ["m-7-3", "m-16-3", "m-260-3"] }
+            { load: "тяжёлый", subjectId: "math", duration: "2,5 ч", title: "Матан — Этап 1: Комплексные числа, обратные функции, дроби", taskIds: ["m-26-3", "m-35-3", "m-19-3"] },
+            { load: "тяжёлый", subjectId: "physics", duration: "2,5 ч", title: "Физика — Маршрут к КР-1: Диффуры и уравнение Мещерского", taskIds: ["p-2-30", "p-3-10"] },
+            { load: "средний", subjectId: "math", duration: "2,5 ч", title: "Матан — Этап 2: Метод индукции и рекуррентные формулы", taskIds: ["m-7-3", "m-16-3", "m-260-3"] }
           ]
         },
         {
@@ -179,12 +182,15 @@
           title: "Неделя 2: Первый штурм КР-1 и пределы последовательностей",
           dates: "30 ноября – 6 декабря",
           hours: "8 ч",
+          quota: { math: 4, physics: 6, chemistry: 3.5, biology: 1.5, algebra: 1 },
+          anchor: "Сб 12–20 · библиотека — самое тяжёлое из квоты",
+          anchorFallback: "воскресенье с 15:00, 6 ч вместо 8",
           isReserve: false,
           goal: "Полностью закрыть тему реактивного движения (включая задачу КР-1) и 5 задач на пределы последовательностей.",
           sessions: [
-            { day: "Пн / Вт", subjectId: "physics", duration: "3 ч", title: "Физика — Формула Циолковского + штурм КР-1 (Овч. 3.46я)", taskIds: ["p-3-43", "p-3-44", "p-kr1"] },
-            { day: "Ср / Чт", subjectId: "math", duration: "2,5 ч", title: "Матан — Этап 3: Все 5 пределов последовательностей", taskIds: ["m-34-3", "m-39-4", "m-61-1", "m-62-11", "m-71-7"] },
-            { day: "Сб / Вс", subjectId: "physics", duration: "2,5 ч", title: "Физика — Маршрут к КР-2: Криволинейная кинематика и баллистика", taskIds: ["p-ir-1-38", "p-4-44"] }
+            { load: "тяжёлый", subjectId: "physics", duration: "3 ч", title: "Физика — Формула Циолковского + штурм КР-1 (Овч. 3.46я)", taskIds: ["p-3-43", "p-3-44", "p-kr1"] },
+            { load: "средний", subjectId: "math", duration: "2,5 ч", title: "Матан — Этап 3: Все 5 пределов последовательностей", taskIds: ["m-34-3", "m-39-4", "m-61-1", "m-62-11", "m-71-7"] },
+            { load: "средний", subjectId: "physics", duration: "2,5 ч", title: "Физика — Маршрут к КР-2: Криволинейная кинематика и баллистика", taskIds: ["p-ir-1-38", "p-4-44"] }
           ]
         },
         {
@@ -192,12 +198,15 @@
           title: "Неделя 3: Финиш по Матану и механика вращения",
           dates: "7 – 13 декабря",
           hours: "8 ч",
+          quota: { math: 4, physics: 6, chemistry: 3.5, biology: 1.5, algebra: 1 },
+          anchor: "Сб 12–20 · библиотека — самое тяжёлое из квоты",
+          anchorFallback: "воскресенье с 15:00, 6 ч вместо 8",
           isReserve: false,
           goal: "Дорешать и оформить все 15 задач КДЗ по матану (можно сдавать!), освоить динамику качения.",
           sessions: [
-            { day: "Пн / Вт", subjectId: "math", duration: "2,5 ч", title: "Матан — Этап 4: Пределы функций (неопределённость 0/0)", taskIds: ["m-20-3", "m-25-3", "m-29-4"] },
-            { day: "Ср / Чт", subjectId: "physics", duration: "3 ч", title: "Физика — Блоки, момент инерции и качение без проскальзывания", taskIds: ["p-9-4", "p-9-15"] },
-            { day: "Сб / Вс", subjectId: "math", duration: "2,5 ч", title: "Матан — Этап 5: Теорема Вейерштрасса + чистовик КДЗ", taskIds: ["m-164-3"] }
+            { load: "тяжёлый", subjectId: "math", duration: "2,5 ч", title: "Матан — Этап 4: Пределы функций (неопределённость 0/0)", taskIds: ["m-20-3", "m-25-3", "m-29-4"] },
+            { load: "тяжёлый", subjectId: "physics", duration: "3 ч", title: "Физика — Блоки, момент инерции и качение без проскальзывания", taskIds: ["p-9-4", "p-9-15"] },
+            { load: "средний", subjectId: "math", duration: "2,5 ч", title: "Матан — Этап 5: Теорема Вейерштрасса + чистовик КДЗ", taskIds: ["m-164-3"] }
           ]
         },
         {
@@ -205,12 +214,15 @@
           title: "Неделя 4: Штурм КР-2 и КР-3 (петля и удары)",
           dates: "14 – 20 декабря",
           hours: "7,5 ч",
+          quota: { math: 4, physics: 6, chemistry: 3.5, biology: 1.5, algebra: 1 },
+          anchor: "Сб 12–20 · библиотека — самое тяжёлое из квоты",
+          anchorFallback: "воскресенье с 15:00, 6 ч вместо 8",
           isReserve: false,
           goal: "Освоить мёртвую петлю с качением (КР-2) и связку ЗСИ + ЗСМИ + Штейнер для ударов (КР-3).",
           sessions: [
-            { day: "Пн / Вт", subjectId: "physics", duration: "2,5 ч", title: "Физика — Штурм КР-2: Шар на мёртвой петле (Овч. 9.74)", taskIds: ["p-kr2"] },
-            { day: "Ср / Чт", subjectId: "physics", duration: "2,5 ч", title: "Физика — Маршрут к КР-3: Удары, центр масс и ЗСМИ", taskIds: ["p-4-86", "p-6-6"] },
-            { day: "Сб / Вс", subjectId: "physics", duration: "2,5 ч", title: "Физика — Теорема Штейнера + штурм КР-3 (Овч. 6.13)", taskIds: ["p-9-21", "p-kr3"] }
+            { load: "тяжёлый", subjectId: "physics", duration: "2,5 ч", title: "Физика — Штурм КР-2: Шар на мёртвой петле (Овч. 9.74)", taskIds: ["p-kr2"] },
+            { load: "средний", subjectId: "physics", duration: "2,5 ч", title: "Физика — Маршрут к КР-3: Удары, центр масс и ЗСМИ", taskIds: ["p-4-86", "p-6-6"] },
+            { load: "тяжёлый", subjectId: "physics", duration: "2,5 ч", title: "Физика — Теорема Штейнера + штурм КР-3 (Овч. 6.13)", taskIds: ["p-9-21", "p-kr3"] }
           ]
         },
         {
@@ -218,11 +230,14 @@
           title: "Неделя 5: Боевой прогон и закрытие пробелов",
           dates: "21 – 27 декабря",
           hours: "6 ч",
+          quota: { math: 4, physics: 6, chemistry: 3.5, biology: 1.5, algebra: 1 },
+          anchor: "Сб 12–20 · библиотека — самое тяжёлое из квоты",
+          anchorFallback: "воскресенье с 15:00, 6 ч вместо 8",
           isReserve: false,
           goal: "Решить все 3 задачи КР с чистого листа без шпаргалок на время и защитить КДЗ по матану.",
           sessions: [
-            { day: "Вт / Ср", subjectId: "physics", duration: "3 ч", title: "Физика — Имитация пересдачи КР (90 мин чистого решения + разбор)", taskIds: ["p-kr1", "p-kr2", "p-kr3"] },
-            { day: "Сб / Вс", subjectId: "math", duration: "3 ч", title: "Повтор «красных» задач по обоим предметам + сдача КДЗ", taskIds: ["m-19-3", "m-260-3", "m-164-3"] }
+            { load: "тяжёлый", subjectId: "physics", duration: "3 ч", title: "Физика — Имитация пересдачи КР (90 мин чистого решения + разбор)", taskIds: ["p-kr1", "p-kr2", "p-kr3"] },
+            { load: "лёгкий", subjectId: "math", duration: "3 ч", title: "Повтор «красных» задач по обоим предметам + сдача КДЗ", taskIds: ["m-19-3", "m-260-3", "m-164-3"] }
           ]
         },
         {
@@ -233,7 +248,7 @@
           isReserve: true,
           goal: "Запасная неделя на случай болезни, переноса пересдачи или подключения вкладок по Алгебре и Химии.",
           sessions: [
-            { day: "По ситуации", subjectId: "physics", duration: "Резерв", title: "Финальная пересдача / дозакрытие хвостов / старт новых предметов", taskIds: [] }
+            { load: "по ситуации", subjectId: "physics", duration: "Резерв", title: "Финальная пересдача / дозакрытие хвостов / старт новых предметов", taskIds: [] }
           ]
         }
       ],
@@ -1130,6 +1145,90 @@
               ]
             }
           ]
+        },
+
+        // =====================================================================
+        // ВКЛАДКА 3: ХИМИЯ — собеседование без билетов
+        // =====================================================================
+        {
+          id: "chemistry",
+          name: "Химия (собеседование)",
+          shortName: "Химия",
+          badge: "Теория • без билетов",
+          type: "theory",
+          accent: "violet",
+          description: "Формат — устное собеседование по всей первой половине курса; билетов нет ни на коллоквиуме, ни на экзамене. Значит нужен не список ответов, а карта: строение задаёт свойства, остальное выводится. Сначала факты, потом вывод, потом три минуты вслух.",
+          algorithms: [
+            { trigger: "Беру новую часть карты", action: "Сначала факты: определения, названия, формулы, единицы. Потом вывод ключевой формулы сам. Потом три минуты вслух без подглядывания.", example: "Части 0–5" },
+            { trigger: "Мой вывод расходится с картой", action: "Не верить ни тексту, ни себе: искать, где разошлись определения. Это и есть место, которое спросят.", example: "" }
+          ],
+          stages: [
+            { id: "chem-s0", title: "Часть 0. Фундамент", subtitle: "Атом, орбитали, электроотрицательность, типы связи", items: [
+              { id: "chem-0", code: "Карта, часть 0", title: "Атом, орбитали, ЭО, степень окисления против заряда иона, три типа связи", difficulty: "База", condition: "Уметь объяснить: почему электроотрицательность — не то же, что сродство к электрону; чем степень окисления отличается от заряда иона; почему водородная связь слабее ковалентной, но задаёт свойства воды.", steps: ["Выписать определения по памяти", "Вывести связь ЭО с положением в таблице", "Проговорить вслух три минуты"], answer: "Готово, когда объясняю с пустого листа." }
+            ]},
+            { id: "chem-s1", title: "Часть 1. Язык химии", subtitle: "Индексы, виды формул, классификация, номенклатура", items: [
+              { id: "chem-1", code: "Карта, часть 1", title: "Номенклатура кислот, оснований и солей", difficulty: "База", condition: "В карте автор честно пометил: этот раздел сокращён ради интуитивности. Значит добирать по программе и по чужим конспектам, а не по карте.", steps: ["Функциональная номенклатура", "Систематическая", "Прогнать 10 формул в обе стороны"], answer: "Готово, когда называю соединение и пишу формулу по названию без задержки." }
+            ]},
+            { id: "chem-s2", title: "Часть 2. Теории кислот и оснований", subtitle: "Бренстед, Аррениус, Льюис — переходы между ними", items: [
+              { id: "chem-2", code: "Карта, часть 2", title: "Эволюция теорий кислот и оснований и ответы на «почему»", difficulty: "Средняя", condition: "Главный вопрос преподавателя: как перейти от одной теории к другой и что теряется. Здесь нужен вывод, а не пересказ.", steps: ["Определения каждой теории", "Что каждая объясняет и чего не объясняет", "Вывести переход", "Проговорить вслух"], answer: "Готово, когда строю цепочку Аррениус → Бренстед → Льюис и называю, что добавилось." }
+            ]},
+            { id: "chem-s3", title: "Часть 3. Стехиометрия", subtitle: "Расчёты и закон эквивалентов", items: [
+              { id: "chem-3", code: "Карта, часть 3", title: "Стехиометрические расчёты, эквиваленты", difficulty: "Средняя", condition: "Единственная часть, которую можно проверить числом: решить 5–7 задач на эквиваленты и выход реакции, сверить ответы.", steps: ["Выписать формулы", "Решить 5–7 задач", "Сверить с ответами"], answer: "Готово, когда задачи сходятся." }
+            ]},
+            { id: "chem-s4", title: "Часть 4. Термодинамика", subtitle: "Функции состояния, цикл Карно, уравнение Кирхгофа", items: [
+              { id: "chem-4", code: "Карта, часть 4", title: "Почему полный дифференциал по циклу даёт ноль, а теплота — нет", difficulty: "Высокая", condition: "Самая физическая часть: здесь твоя база работает на тебя. Но именно тут карта сокращает выкладки (цикл Карно) — значит выводить самому.", steps: ["Определения функций состояния", "Вывод dU, dH", "Цикл Карно с нуля", "Уравнение Кирхгофа"], answer: "Готово, когда вывожу КПД цикла Карно, не подглядывая." }
+            ]},
+            { id: "chem-s5", title: "Часть 5. Растворы", subtitle: "Концентрации и то, что было до гидролиза солей", items: [
+              { id: "chem-5", code: "Карта, часть 5", title: "Способы выражения концентрации, свойства растворов", difficulty: "Средняя", condition: "Уметь пересчитывать между концентрациями и объяснять, зачем каждая нужна.", steps: ["Определения всех концентраций", "Пересчёт в обе стороны", "Проговорить вслух"], answer: "Готово, когда пересчитываю между молярной, моляльной и массовой долей без задержки." }
+            ]}
+          ]
+        },
+
+        // =====================================================================
+        // ВКЛАДКА 4: БИОЛОГИЯ — статьи + тест по понятиям
+        // =====================================================================
+        {
+          id: "biology",
+          name: "Биология (экзамен)",
+          shortName: "Биология",
+          badge: "Теория • статьи + тест",
+          type: "theory",
+          accent: "emerald",
+          description: "Формат известен из своего же документа: дадут статьи — прочитать и пересказать своими словами, плюс тест на понятия с лекций. Глубокие детали не спрашивают (пример лектора — развитие нервной системы).",
+          algorithms: [
+            { trigger: "Готовлю биологию", action: "Сначала список понятий с лекций и определения к каждому. Потом пересказ: читаю абзац, закрываю, говорю вслух, сверяю, что потерял.", example: "" }
+          ],
+          stages: [
+            { id: "bio-s1", title: "Понятия с лекций", subtitle: "Из них собирается тест", items: [
+              { id: "bio-1111", code: "Лекция 11.11", title: "Понятия лекции 11.11", difficulty: "База", condition: "Конспекта нет: был, но всплыл, материалов нет. Восстанавливать по чужим записям и презентациям.", steps: ["Собрать материалы", "Выписать понятия", "Дать определение каждому своими словами"], answer: "" },
+              { id: "bio-1811", code: "Лекция 18.11", title: "Понятия лекции 18.11", difficulty: "База", condition: "Аудио и презентация лектора есть, конспект не начат.", steps: ["Расшифровать аудио", "Выписать понятия", "Определения своими словами"], answer: "" }
+            ]},
+            { id: "bio-s2", title: "Статьи и пересказ", subtitle: "Вторая половина экзамена", items: [
+              { id: "bio-retell", code: "Тренировка", title: "Пересказ научной статьи своими словами", difficulty: "Средняя", condition: "Самих статей на руках нет — тренироваться на любых обзорных текстах по биологии: прочитать раздел, закрыть, сказать вслух, что понял, сверить потерю.", steps: ["Прочитать абзац", "Закрыть текст", "Пересказать вслух", "Сверить, что потерял"], answer: "" }
+            ]}
+          ]
+        },
+
+        // =====================================================================
+        // ВКЛАДКА 5: АЛГЕБРА — точечная добивка
+        // =====================================================================
+        {
+          id: "algebra",
+          name: "Алгебра",
+          shortName: "Алгебра",
+          badge: "Практика • добивка",
+          type: "practice",
+          accent: "rose",
+          description: "Не с нуля: определения и свойства уже вывезли на 4 без доказательств. Задача — точечно закрыть провалы, а не проходить курс заново.",
+          algorithms: [
+            { trigger: "Задача по алгебре", action: "Сначала определения и свойства, потом пример. Если просят доказательство — выводить, а не вспоминать текст.", example: "" }
+          ],
+          stages: [
+            { id: "alg-s1", title: "Делимость", subtitle: "По конспектам 11.11 и второй лекции", items: [
+              { id: "alg-1", code: "Лек. 11.11", title: "Теория делимости: определения и свойства", difficulty: "База", condition: "Восстановить по конспекту: делимость, НОД, взаимная простота, свойства, которыми пользуешься в задачах.", steps: ["Скелет по памяти", "Сверить с конспектом", "Отметить провалы"], answer: "" },
+              { id: "alg-2", code: "Задачи", title: "Задачи на делимость и сравнения", difficulty: "Средняя", condition: "Один тип за блок: 5–7 задач подряд, чтобы приём закрепился.", steps: ["Решить 5–7 задач одного типа", "Разобрать ошибки"], answer: "" }
+            ]}
+          ]
         }
       ]
     };
@@ -1156,7 +1255,22 @@
       indigo: { bar: "bg-indigo-600", badge: "bg-indigo-50 text-indigo-700 border-indigo-200", tab: "border-indigo-600 text-indigo-600", ring: "focus:ring-indigo-500" },
       amber:  { bar: "bg-amber-500",  badge: "bg-amber-50 text-amber-800 border-amber-200",   tab: "border-amber-500 text-amber-700",   ring: "focus:ring-amber-500" },
       emerald:{ bar: "bg-emerald-600",badge: "bg-emerald-50 text-emerald-700 border-emerald-200", tab: "border-emerald-600 text-emerald-700", ring: "focus:ring-emerald-500" },
-      rose:   { bar: "bg-rose-600",   badge: "bg-rose-50 text-rose-700 border-rose-200",     tab: "border-rose-600 text-rose-700",     ring: "focus:ring-rose-500" }
+      rose:   { bar: "bg-rose-600",   badge: "bg-rose-50 text-rose-700 border-rose-200",     tab: "border-rose-600 text-rose-700",     ring: "focus:ring-rose-500" },
+      violet: { bar: "bg-violet-600", badge: "bg-violet-50 text-violet-700 border-violet-200", tab: "border-violet-600 text-violet-700", ring: "focus:ring-violet-500" }
+    };
+
+    // Нагрузка блока — то, по чему реально выбирают в 21:40, а не по дню недели.
+    const LOAD_CLS = {
+      "тяжёлый": "bg-rose-50 text-rose-700 border-rose-200",
+      "средний": "bg-amber-50 text-amber-800 border-amber-200",
+      "лёгкий": "bg-emerald-50 text-emerald-700 border-emerald-200"
+    };
+
+    // Часы недели считаются из квоты, а не берутся из строки — иначе бейдж врёт молча.
+    const quotaTotal = (w) => w.quota ? Object.values(w.quota).reduce((a, b) => a + b, 0) : null;
+    const quotaLabel = (w) => {
+      const t = quotaTotal(w);
+      return t === null ? (w.hours || "") : String(t).replace(".", ",") + " ч";
     };
 
     let state = {
@@ -1408,7 +1522,7 @@
             <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 flex flex-col gap-2">
               <div class="flex flex-wrap items-center justify-between gap-2">
                 <div class="flex items-center gap-2 flex-wrap">
-                  <span class="text-xs font-semibold text-slate-500 uppercase tracking-wide">${escapeHtml(ses.day)}</span>
+                  <span class="text-xs px-2 py-0.5 rounded-md border font-medium ${LOAD_CLS[ses.load] || "bg-slate-100 text-slate-600 border-slate-200"}">${escapeHtml(ses.load || ses.day || "")}</span>
                   ${subj ? `<span class="text-xs px-2 py-0.5 rounded-md border font-medium ${acc.badge}">${escapeHtml(subj.shortName)}</span>` : ""}
                   <span class="text-sm font-semibold text-slate-900">${escapeHtml(ses.title)}</span>
                 </div>
@@ -1431,10 +1545,23 @@
               </div>
               <div class="flex items-center gap-2 text-xs">
                 <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 font-medium">${escapeHtml(w.dates)}</span>
-                <span class="px-2.5 py-1 rounded-lg bg-indigo-50 text-indigo-700 font-semibold">${escapeHtml(w.hours)}</span>
+                <span class="px-2.5 py-1 rounded-lg bg-indigo-50 text-indigo-700 font-semibold" title="Сумма квоты по предметам">${escapeHtml(quotaLabel(w))}</span>
               </div>
             </div>
+            ${w.quota ? `<div class="mt-3 flex flex-wrap gap-1.5">${Object.entries(w.quota).map(([sid, h]) => {
+              const sub = STUDY_DATA.subjects.find(x => x.id === sid);
+              return `<span class="text-xs px-2 py-1 rounded-md bg-slate-50 border border-slate-200 text-slate-600">${escapeHtml(sub ? sub.shortName : sid)} — ${String(h).replace(".", ",")} ч</span>`;
+            }).join("")}</div>` : ""}
+            ${w.anchor ? `<div class="mt-3 flex flex-wrap items-center gap-2 text-xs">
+              <span class="px-2 py-1 rounded-md bg-slate-900 text-white font-semibold">Якорь</span>
+              <span class="text-slate-600">${escapeHtml(w.anchor)}</span>
+              ${w.anchorFallback ? `<span class="text-slate-500">Дубль: ${escapeHtml(w.anchorFallback)}</span>` : ""}
+            </div>` : ""}
             <div class="mt-3.5 space-y-2.5">${sessionsHtml}</div>
+            ${w.isReserve ? "" : `<div class="mt-3 pt-3 border-t border-slate-200 text-xs text-slate-500">
+              <span class="font-medium text-slate-600">Воскресенье, вечер — проверка квоты.</span>
+              Набрана — неделя закрыта, и это не «мог бы ещё». Не набрана — добираешь половину, остаток прощается, первым режется то, что без внешнего срока.
+            </div>`}
           </div>
         `;
       }).join("");
@@ -1478,8 +1605,8 @@
           <div class="space-y-4">
             <div class="flex flex-wrap items-center justify-between gap-2">
               <div>
-                <h2 class="text-lg font-bold text-slate-900">Единый недельный календарь занятий</h2>
-                <p class="text-xs text-slate-500">Нажимай на плашку любой задачи в расписании — сразу откроется её карточка с разбором.</p>
+                <h2 class="text-lg font-bold text-slate-900">Квота недели и меню вариантов</h2>
+                <p class="text-xs text-slate-500">Обязательное — только квота в часах. Плашки ниже это меню: выбирай блок по состоянию, а не по дню недели. Воскресенье вечером — проверка квоты.</p>
               </div>
               <div class="flex items-center gap-3 text-xs text-slate-500">
                 <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-slate-300"></span>Не начато</span>
